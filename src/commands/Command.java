@@ -14,6 +14,10 @@ public abstract class Command {
         this.spreadsheet = spreadsheet;
     }
 
+    public Spreadsheet getSpreadsheet() {
+        return spreadsheet;
+    }
+
     public abstract void execute(String[] args);
 
 }
