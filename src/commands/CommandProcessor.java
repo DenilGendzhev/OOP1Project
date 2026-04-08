@@ -1,5 +1,6 @@
 package commands;
 
+import exceptions.IncorrectCommandException;
 import models.Spreadsheet;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,8 +35,27 @@ public class CommandProcessor{
      *
      * @param input the raw string typed by the user
      */
-
     public void process(String input) {
-        // work with the input here
+        try {
+            String trimmed = input.trim();
+            CommandType type = CommandType.fromString(getCommandKey(trimmed));
+            Command command = commands.get(type);
+            command.execute(trimmed.split("\\s+"));
+        } catch (IncorrectCommandException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Extracts the command key from the input, handling the special "save as" case.
+     *
+     * @param input the trimmed user input
+     * @return the command key string
+     */
+    private String getCommandKey(String input) {
+        if (input.toLowerCase().startsWith("save as")) {
+            return "save as";
+        }
+        return input.split("\\s+")[0];
     }
 }

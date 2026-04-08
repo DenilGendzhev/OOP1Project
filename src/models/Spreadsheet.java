@@ -29,7 +29,31 @@ public class Spreadsheet {
         table.clear();
     }
 
+    /**
+     * Returns the full table as a list of rows.
+     *
+     * @return the table
+     */
     public List<List<Cell>> getTable() {
         return table;
+    }
+
+    /**
+     * Returns the cell at the given 1-based row and column.
+     * Returns an {@link EmptyCell} if the coordinates are out of bounds.
+     *
+     * @param row 1-based row index
+     * @param col 1-based column index
+     * @return the cell at the given position
+     */
+    public Cell getCell(int row, int col) {
+        if (row < 1 || row > table.size()) {
+            return new EmptyCell();
+        }
+        List<Cell> rowList = table.get(row - 1);
+        if (col < 1 || col > rowList.size()) {
+            return new EmptyCell();
+        }
+        return rowList.get(col - 1);
     }
 }
