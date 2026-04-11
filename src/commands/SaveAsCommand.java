@@ -15,8 +15,6 @@ public class SaveAsCommand extends Command{
 
     @Override
     public void execute(String[] args) {
-
         System.out.println("Saving file...");
-        System.exit(0);
     }
 }

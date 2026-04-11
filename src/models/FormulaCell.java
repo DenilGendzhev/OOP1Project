@@ -16,4 +16,9 @@ public class FormulaCell extends Cell{
     public double getNumericValue(Spreadsheet table) {
         return 0;
     }
+
+    @Override
+    public String getRawValue() {
+        return "=" + formula;
+    }
 }

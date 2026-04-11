@@ -21,4 +21,9 @@ public class DoubleCell extends Cell{
     public double getNumericValue(Spreadsheet sheet) {
         return value;
     }
+
+    @Override
+    public String getRawValue() {
+        return String.valueOf(value);
+    }
 }

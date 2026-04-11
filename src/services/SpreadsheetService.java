@@ -41,6 +41,7 @@ public class SpreadsheetService {
     }
 
     /**
+     * Edits the cell at the given 1-based row and column.
      *
      * @param spreadsheet
      * @param row
@@ -48,6 +49,6 @@ public class SpreadsheetService {
      * @param cell
      */
     public void edit(Spreadsheet spreadsheet, int row, int col, Cell cell) {
-        spreadsheet.getTable().get(row).set(col, cell);
+        spreadsheet.getTable().get(row - 1).set(col - 1, cell);
     }
 }

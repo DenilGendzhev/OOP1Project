@@ -27,6 +27,7 @@ public class Spreadsheet {
      */
     public void clear() {
         table.clear();
+        filePath=null;
     }
 
     /**
@@ -55,5 +56,26 @@ public class Spreadsheet {
             return new EmptyCell();
         }
         return rowList.get(col - 1);
+    }
+
+    /** The path of the currently open file, or {@code null} if no file is open. */
+    private String filePath;
+
+    /**
+     * Returns the path of the currently open file.
+     *
+     * @return the file path, or {@code null} if no file is open
+     */
+    public String getFilePath() {
+        return filePath;
+    }
+
+    /**
+     * Sets the path of the currently open file.
+     *
+     * @param filePath the file path
+     */
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 }

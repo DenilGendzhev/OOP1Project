@@ -2,6 +2,7 @@ package commands;
 
 
 import models.Spreadsheet;
+import services.SpreadsheetService;
 
 /**
  * *Class for the closing command.
@@ -9,14 +10,23 @@ import models.Spreadsheet;
 
 public class PrintCommand extends Command{
 
+    private final SpreadsheetService service = new SpreadsheetService();
+
+    /**
+     * Constructs a {@code PrintCommand} with the given spreadsheet.
+     *
+     * @param spreadsheet the spreadsheet to print
+     */
     public PrintCommand(Spreadsheet spreadsheet) {
         super(spreadsheet);
     }
 
     @Override
     public void execute(String[] args) {
-
-        System.out.println("Printing spreadsheet...");
-        System.exit(0);
+        if (getSpreadsheet().getFilePath() == null) {
+            System.out.println("No file is currently open.");
+            return;
+        }
+        service.print(getSpreadsheet());
     }
 }

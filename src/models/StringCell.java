@@ -25,4 +25,9 @@ public class StringCell extends Cell{
             return 0;
         }
     }
+
+    @Override
+    public String getRawValue() {
+        return "\"" + value.replace("\\", "\\\\").replace("\"", "\\\"") + "\"";
+    }
 }

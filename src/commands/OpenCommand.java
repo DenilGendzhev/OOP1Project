@@ -48,6 +48,7 @@ public class OpenCommand extends Command{
         try {
             List<List<Cell>> data = fileReader.read(filePath);
             service.loadData(getSpreadsheet(), data);
+            getSpreadsheet().setFilePath(filePath);
             System.out.println("Successfully opened: " + filePath);
         } catch (OpenFileException | IncorrectInputException e) {
             System.out.println(e.getMessage());

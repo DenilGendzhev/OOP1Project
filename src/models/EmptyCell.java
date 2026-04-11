@@ -16,4 +16,9 @@ public class EmptyCell extends Cell{
         return 0;
     }
 
+    @Override
+    public String getRawValue() {
+        return "";
+    }
+
 }

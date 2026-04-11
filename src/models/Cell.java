@@ -10,4 +10,6 @@ public abstract class Cell {
 
     public abstract double getNumericValue(Spreadsheet table);
 
+    public abstract String getRawValue();
+
 }
