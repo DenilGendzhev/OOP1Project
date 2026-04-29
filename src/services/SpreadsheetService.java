@@ -17,12 +17,12 @@ public class SpreadsheetService {
      * @param spreadsheet
      */
     public void print(Spreadsheet spreadsheet) {
-        for (var row : spreadsheet.getTable()) {
-
-            for (Cell cell : row) {
-                System.out.print(cell.getDisplayValue(spreadsheet) + " | ");
+        int[] widths = TableFormatter.getColumnWidths(spreadsheet);
+        for (List<Cell> row : spreadsheet.getTable()) {
+            for (int col = 0; col < row.size(); col++) {
+                String value = row.get(col).getDisplayValue(spreadsheet);
+                System.out.print(TableFormatter.padRight(value, widths[col]) + " | ");
             }
-
             System.out.println();
         }
     }

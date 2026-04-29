@@ -3,6 +3,9 @@ package models;
 import exceptions.IncorrectExpressionException;
 import services.FormulaEvaluator;
 
+/**
+ * Cell that stores and evaluates a formula expression.
+ */
 public class FormulaCell extends Cell{
     private String formula;
     private final FormulaEvaluator evaluator = new FormulaEvaluator();

@@ -14,7 +14,6 @@ public class HelpCommand extends Command{
 
     @Override
     public void execute(String[] args) {
-
         System.out.println("The following commands are supported:");
         System.out.println("open <file> opens <file>");
         System.out.println("close                   closes currently opened");

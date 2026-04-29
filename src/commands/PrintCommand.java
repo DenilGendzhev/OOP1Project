@@ -5,9 +5,8 @@ import models.Spreadsheet;
 import services.SpreadsheetService;
 
 /**
- * *Class for the closing command.
+ * Prints the contents of the spreadsheet to the screen.
  */
-
 public class PrintCommand extends Command{
 
     private final SpreadsheetService service = new SpreadsheetService();

@@ -19,11 +19,13 @@ public class StringCell extends Cell{
 
     @Override
     public double getNumericValue(Spreadsheet sheet) {
-        try {
-            return Double.parseDouble(value);
-        } catch (NumberFormatException e) {
-            return 0;
+        if (value.matches("[+-]?\\d+")) {
+            return Long.parseLong(value);
         }
+        if (value.matches("[+-]?\\d+\\.\\d+")) {
+            return Double.parseDouble(value);
+        }
+        return 0;
     }
 
     @Override
