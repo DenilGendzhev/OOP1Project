@@ -7,6 +7,8 @@ import models.Spreadsheet;
 import services.CellParser;
 import services.SpreadsheetService;
 
+import java.util.Arrays;
+
 /**
  * Edits the value of a cell in the spreadsheet.
  */
@@ -46,7 +48,7 @@ public class EditCommand extends Command{
         try {
             int row = Integer.parseInt(args[1]);
             int col = Integer.parseInt(args[2]);
-            String rawValue = args[3];
+            String rawValue = String.join(" ", Arrays.copyOfRange(args, 3, args.length));
 
             Cell newCell = CellParser.parse(rawValue, row, col);
             service.edit(getSpreadsheet(), row, col, newCell);

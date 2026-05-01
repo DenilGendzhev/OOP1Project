@@ -23,14 +23,13 @@ public class CloseCommand extends Command{
      *
      * @param args he command arguments (none required here)
      */
+    @Override
     public void execute(String[] args) {
         if (getSpreadsheet().getFilePath()==null){
-            if (getSpreadsheet().getFilePath() == null) {
-                System.out.println("No file is currently open.");
-                return;
-            }
-            getSpreadsheet().clear();
-            System.out.println("File closed successfully.");
+            System.out.println("No file is currently open.");
+            return;
         }
+        getSpreadsheet().clear();
+        System.out.println("File closed successfully.");
     }
 }

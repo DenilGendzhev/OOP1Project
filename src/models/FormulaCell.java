@@ -22,15 +22,18 @@ public class FormulaCell extends Cell{
      * Returns the evaluated result of the formula, or ERROR if evaluation fails.
      *
      * @param table the spreadsheet used to resolve cell references
-     * @return the result as a string or {@code "Error"} on failure
+     * @return the result as a string or {@code "ERROR"} on failure
      */
     @Override
     public String getDisplayValue(Spreadsheet table) {
         try {
             double result = evaluator.evaluate(formula, table);
+            if (result==Math.floor(result)){
+                return String.valueOf((long)result);
+            }
             return String.valueOf(result);
         } catch (IncorrectExpressionException e){
-            return "Error";
+            return "ERROR";
         }
     }
 

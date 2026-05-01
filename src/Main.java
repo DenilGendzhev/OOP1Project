@@ -7,7 +7,6 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args){
-        System.out.println("Spreadsheet app");
         Spreadsheet spreadsheet = new Spreadsheet();
         CommandProcessor processor = new CommandProcessor(spreadsheet);
         Scanner scanner = new Scanner(System.in);

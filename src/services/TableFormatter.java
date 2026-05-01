@@ -5,6 +5,9 @@ import models.Spreadsheet;
 
 import java.util.List;
 
+/**
+ * Class for formatting the spreadsheet table for display.
+ */
 public class TableFormatter {
     /**
      * Calculates the maximum width of each column in the spreadsheet.
