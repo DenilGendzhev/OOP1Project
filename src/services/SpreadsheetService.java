@@ -1,8 +1,11 @@
 package services;
 
 import models.Cell;
+import models.EmptyCell;
 import models.Spreadsheet;
+import utils.Printer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,11 +22,15 @@ public class SpreadsheetService {
     public void print(Spreadsheet spreadsheet) {
         int[] widths = TableFormatter.getColumnWidths(spreadsheet);
         for (List<Cell> row : spreadsheet.getTable()) {
+            StringBuilder sb = new StringBuilder();
+            Printer printer = new Printer();
+
             for (int col = 0; col < row.size(); col++) {
                 String value = row.get(col).getDisplayValue(spreadsheet);
-                System.out.print(TableFormatter.padRight(value, widths[col]) + " | ");
+                sb.append(TableFormatter.padRight(value, widths[col]));
+                sb.append(" | ");
             }
-            System.out.println();
+            printer.print(sb.toString());
         }
     }
 
@@ -49,6 +56,17 @@ public class SpreadsheetService {
      * @param cell
      */
     public void edit(Spreadsheet spreadsheet, int row, int col, Cell cell) {
-        spreadsheet.getTable().get(row - 1).set(col - 1, cell);
+        // expand rows if needed
+        while (spreadsheet.getTable().size() < row) {
+            spreadsheet.getTable().add(new ArrayList<>());
+        }
+
+        List<Cell> rowList = spreadsheet.getTable().get(row - 1);
+
+        // expand columns in the row if needed
+        while (rowList.size() < col) {
+            rowList.add(new EmptyCell());
+        }
+        rowList.set(col - 1, cell);
     }
 }

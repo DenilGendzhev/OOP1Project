@@ -6,6 +6,7 @@ import models.Cell;
 import models.Spreadsheet;
 import services.CellParser;
 import services.SpreadsheetService;
+import utils.Printer;
 
 import java.util.Arrays;
 
@@ -34,13 +35,18 @@ public class EditCommand extends Command{
      */
     @Override
     public void execute(String[] args) {
+        StringBuilder sb = new StringBuilder();
+        Printer printer = new Printer();
+
         if (getSpreadsheet().getFilePath() == null) {
-            System.out.println("No file is currently open.");
+            sb.append("No file is currently open.");
+            Printer.print(sb.toString());
             return;
         }
 
         if (args.length < 4) {
-            System.out.println("Usage: edit <row> <col> <value>");
+            sb.append("Usage: edit <row> <col> <value>");
+            Printer.print(sb.toString());
             //if they are less than 4 then something is not right,
             // edit-1, <row> -2, <col>-3 , <value>-4
             return;
@@ -52,10 +58,11 @@ public class EditCommand extends Command{
 
             Cell newCell = CellParser.parse(rawValue, row, col);
             service.edit(getSpreadsheet(), row, col, newCell);
-            System.out.println("Cell R" + row + "C" + col + " updated successfully.");
-
+            sb.append("Cell R").append(row).append("C").append(col).append(" updated successfully.");
+            printer.print(sb.toString());
         } catch (NumberFormatException e) {
-            System.out.println("Row and column must be valid integers.");
+            sb.append("Row and column must be valid integers.");
+            printer.print(sb.toString());
         } catch (IncorrectInputException e) {
             System.out.println(e.getMessage());
         }

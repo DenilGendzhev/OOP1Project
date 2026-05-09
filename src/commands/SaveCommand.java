@@ -3,6 +3,7 @@ package commands;
 
 import io.FileWriter;
 import models.Spreadsheet;
+import utils.Printer;
 
 import java.io.IOException;
 
@@ -32,15 +33,21 @@ public class SaveCommand extends Command{
      */
     @Override
     public void execute(String[] args) {
+        StringBuilder sb = new StringBuilder();
+        Printer printer = new Printer();
+
         if (getSpreadsheet().getFilePath() == null) {
-            System.out.println("No file is currently open.");
+            sb.append("No file is currently open.");
+            printer.print(sb.toString());
             return;
         }
         try {
             fileWriter.write(getSpreadsheet(), getSpreadsheet().getFilePath());
-            System.out.println("Successfully saved: " + getSpreadsheet().getFilePath());
+            sb.append("Successfully saved: " + getSpreadsheet().getFilePath());
+            printer.print(sb.toString());
         } catch (IOException e) {
-            System.out.println("Error saving file: " + e.getMessage());
+            sb.append("Error saving file: ").append(e.getMessage());
+            printer.print(sb.toString());
         }
     }
 }

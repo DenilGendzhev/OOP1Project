@@ -5,6 +5,7 @@ import io.FileReader;
 import models.Cell;
 import models.Spreadsheet;
 import services.SpreadsheetService;
+import utils.Printer;
 
 import java.util.List;
 
@@ -38,8 +39,12 @@ public class OpenCommand extends Command{
      */
     @Override
     public void execute(String[] args) {
+        StringBuilder sb = new StringBuilder();
+        Printer printer = new Printer();
+
         if (args.length < 2) {
-            System.out.println("Usage: open <path>");
+            sb.append("Usage: open <path>");
+            printer.print(sb.toString());
             return;
         }
 
@@ -49,7 +54,8 @@ public class OpenCommand extends Command{
             List<List<Cell>> data = fileReader.read(filePath);
             service.loadData(getSpreadsheet(), data);
             getSpreadsheet().setFilePath(filePath);
-            System.out.println("Successfully opened: " + filePath);
+            sb.append("Successfully opened: ").append(filePath);
+            printer.print(sb.toString());
         } catch (OpenFileException | IncorrectInputException e) {
             System.out.println(e.getMessage());
         }

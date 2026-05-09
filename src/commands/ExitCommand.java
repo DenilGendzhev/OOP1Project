@@ -2,6 +2,7 @@ package commands;
 
 
 import models.Spreadsheet;
+import utils.Printer;
 
 /**
  * *Class for the exiting command.
@@ -15,7 +16,11 @@ public class ExitCommand extends Command{
 
     @Override
     public void execute(String[] args) {
-        System.out.println("Exiting program...");
+        StringBuilder sb = new StringBuilder();
+        Printer printer = new Printer();
+
+        sb.append("Exiting program...");
+        printer.print(sb.toString());
         System.exit(0);
     }
 }

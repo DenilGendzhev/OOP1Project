@@ -2,6 +2,8 @@ package commands;
 
 import exceptions.IncorrectCommandException;
 import models.Spreadsheet;
+import utils.Printer;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,7 +44,7 @@ public class CommandProcessor{
             Command command = commands.get(type);
             command.execute(trimmed.split("\\s+"));
         } catch (IncorrectCommandException e) {
-            System.out.println(e.getMessage());
+            Printer.print(e.getMessage());
         }
     }
 
