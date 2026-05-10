@@ -7,11 +7,14 @@ import models.Spreadsheet;
 import services.SpreadsheetService;
 import utils.Printer;
 
+import java.io.IOException;
 import java.util.List;
 
 
 /**
+ * Executes the open command.
  * Opens a CSV file and loads its contents into the spreadsheet.
+ * If the file does not exist, creates a new empty file.
  */
 
 public class OpenCommand extends Command{
@@ -56,8 +59,22 @@ public class OpenCommand extends Command{
             getSpreadsheet().setFilePath(filePath);
             sb.append("Successfully opened: ").append(filePath);
             printer.print(sb.toString());
-        } catch (OpenFileException | IncorrectInputException e) {
-            System.out.println(e.getMessage());
+        } catch (OpenFileException e) {
+            try {
+                java.io.File newFile = new java.io.File(filePath);
+                newFile.createNewFile();
+                getSpreadsheet().clear();
+                getSpreadsheet().setFilePath(filePath);
+
+                sb.append("File not found. Created new empty file: ").append(filePath);
+                printer.print(sb.toString());
+
+            } catch (IOException ex) {
+                printer.print("Error creating file: " + ex.getMessage());
+            }
+
+        } catch (IncorrectInputException e) {
+            Printer.print(e.getMessage());
         }
     }
 }
