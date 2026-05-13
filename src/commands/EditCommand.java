@@ -64,7 +64,7 @@ public class EditCommand extends Command{
             sb.append("Row and column must be valid integers.");
             printer.print(sb.toString());
         } catch (IncorrectInputException e) {
-            System.out.println(e.getMessage());
+            printer.print(e.getMessage());
         }
     }
 }

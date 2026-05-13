@@ -20,5 +20,4 @@ public class EmptyCell extends Cell{
     public String getRawValue() {
         return "";
     }
-
 }

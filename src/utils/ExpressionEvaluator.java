@@ -108,7 +108,6 @@ public class ExpressionEvaluator {
                 break;
             }
         }
-
         return left;
     }
 
@@ -144,7 +143,6 @@ public class ExpressionEvaluator {
                 break;
             }
         }
-
         return left;
     }
 

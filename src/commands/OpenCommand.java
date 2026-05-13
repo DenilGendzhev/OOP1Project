@@ -74,7 +74,7 @@ public class OpenCommand extends Command{
             }
 
         } catch (IncorrectInputException e) {
-            Printer.print(e.getMessage());
+            printer.print(e.getMessage());
         }
     }
 }
